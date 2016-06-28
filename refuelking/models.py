@@ -1,7 +1,7 @@
 from refuelking import db
 from sqlalchemy import ForeignKey
 from sqlalchemy.orm import relationship
-from datetime import datetime
+from datetime import datetime, timedelta
 
 
 class Price(db.Model):
