@@ -5,7 +5,7 @@
   padding-bottom: 50px;
   background-attachment: fixed;
   background-size: cover;
-  background-image: url('/static/img/old-gas-pump.jpg');
+  background-image: url('img/old-gas-pump.jpg');
 }
 
 #title h1{

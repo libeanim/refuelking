@@ -4,13 +4,13 @@ REFUELKING | Welche Tankstelle ist am günstigsten?
 {% endblock %}
 {% block head %}
     {{ super() }}
-    <link rel="stylesheet" href="/static/index.css" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}" />
 {% endblock %}
 {% block content %}
 <section id="title">
   <div class="container color-white">
     <div class="clear">
-      <img src="/static/img/gas_station_clipart_white.png">
+      <img src="{{ url_for('static', filename='img/gas_station_clipart_white.png') }}">
       <h1>Refuelking</h1>
     </div>
     <p>Finde die günstigste Tankstelle in deiner Nähe.</p>

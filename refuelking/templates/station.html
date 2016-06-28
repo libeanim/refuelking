@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block head %}
     {{ super() }}
-    <link rel="stylesheet" href="/static/station.css" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='station.css') }}" />
     <!-- <script src="http://www.openlayers.org/api/OpenLayers.js"></script>
     <script src="http://www.openstreetmap.org/openlayers/OpenStreetMap.js"></script> -->
     <link rel="stylesheet" href="http://openlayers.org/en/v3.16.0/css/ol.css" type="text/css">
@@ -30,15 +30,15 @@
           <table class="price-table">
             <tr>
               <td>{{ station['e10'] }}&euro;</td>
-              <td><img src="/static/img/e10.png" alt="E10"></td>
+              <td><img src="{{ url_for('static', filename='img/e10.png') }}" alt="E10"></td>
             </tr>
             <tr>
               <td>{{ station['e5'] }}&euro;</td>
-              <td><img src="/static/img/e5.png" alt="E5"></td>
+              <td><img src="{{ url_for('static', filename='img/e5.png' }}" alt="E5"></td>
             </tr>
             <tr>
               <td>{{ station['diesel'] }}&euro;</td>
-              <td><img src="/static/img/diesel.png" alt="Diesel"></td>
+              <td><img src="{{ url_for('static', filename='img/diesel.png') }}" alt="Diesel"></td>
             </tr>
         </table>
         </div>
@@ -84,7 +84,7 @@
         anchor: [0.5, 1],
         anchorXUnits: 'fraction',
         anchorYUnits: 'fraction',
-        src: '/static/img/station_tag.png'
+        src: '{{ url_for('static', filename='img/station_tag.png') }}'
       }))
     });
 

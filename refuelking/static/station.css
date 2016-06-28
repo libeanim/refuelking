@@ -5,7 +5,7 @@
   padding: 25px;
   background-attachment: scroll;
   background-size: cover;
-  background-image: url('/static/img/vintage-gas-pump-nozzles.jpg');
+  background-image: url('img/vintage-gas-pump-nozzles.jpg');
 }
 
 table{
