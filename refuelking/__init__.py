@@ -24,6 +24,32 @@ tk = Tankerkoenig(api_key=API_KEYS.TANKERKOENIG)
 from refuelking.models import Price
 
 
+def update_price(station):
+    """
+    Update station information in the database of the given station.
+
+    * Parameters:
+
+        :station:
+            ``dict``;
+            station object provided by the Tankerkoenig api.
+    """
+    # Find a price entry of the given station within the last 15 minutes.
+    pr = Price.query.filter(Price.station_id == station['id'],
+                            Price.date > datetime.now() -
+                            timedelta(seconds=15 * 60)).order_by(
+                                Price.date).first()
+    # If there is no entry add the new one otherwise if an entry exists
+    # only add the provided information when the prices have changed.
+    if not pr or not (pr.diesel == station['diesel'] and
+                      pr.e10 == station['e10'] and
+                      pr.e5 == station['e5']):
+        db.session.add(Price(station_id=station['id'],
+                             diesel=station['diesel'],
+                             e10=station['e10'],
+                             e5=station['e5']))
+
+
 # Define main page.
 @app.route('/')
 def index():
@@ -49,7 +75,7 @@ def get_data():
         # Update database with the station info received in the previous
         # Tankerkoenig api call.
         print("Start db update.")
-        map(Price.update_price, res['stations'])
+        map(update_price, res['stations'])
         db.session.commit()
         print("Update finished.")
 
