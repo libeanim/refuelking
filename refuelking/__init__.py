@@ -75,7 +75,8 @@ def get_data():
         # Update database with the station info received in the previous
         # Tankerkoenig api call.
         print("Start db update.")
-        map(update_price, res['stations'])
+        for station in res['stations']:
+            update_price(station)
         db.session.commit()
         print("Update finished.")
 
