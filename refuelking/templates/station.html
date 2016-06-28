@@ -1,0 +1,117 @@
+{% extends "base.html" %}
+{% block head %}
+    {{ super() }}
+    <link rel="stylesheet" href="/static/station.css" />
+    <!-- <script src="http://www.openlayers.org/api/OpenLayers.js"></script>
+    <script src="http://www.openstreetmap.org/openlayers/OpenStreetMap.js"></script> -->
+    <link rel="stylesheet" href="http://openlayers.org/en/v3.16.0/css/ol.css" type="text/css">
+    <script src="http://openlayers.org/en/v3.16.0/build/ol.js"></script>
+    <!-- <link href="http://cdn.pydata.org/bokeh/release/bokeh-0.11.0.min.css" rel="stylesheet" type="text/css"> -->
+    <script src="http://cdn.pydata.org/bokeh/release/bokeh-0.11.0.min.js"></script>
+    {{ price_plot[0]|safe }}
+    <style>
+      #OpenLayers_Control_Attribution_7{
+        bottom:3px;
+      }
+    </style>
+{% endblock %}
+{% block title %}{{ station['name'] }} | Informationen{% endblock %}
+{% block content %}
+  <section id="title">
+    <div class="container color-white">
+      <h1 style="font-size: {% if station['name']|length < 50 %}1.5{% else %}1{% endif %}em">{{ station['name'] }}</h1>
+    </div>
+  </section>
+  <section id="info">
+    <div class="container clear">
+      <div class="box">
+        <div class="box-element">
+          <h2>Aktuelle Preise</h2>
+          <table class="price-table">
+            <tr>
+              <td>{{ station['e10'] }}&euro;</td>
+              <td><img src="/static/img/e10.png" alt="E10"></td>
+            </tr>
+            <tr>
+              <td>{{ station['e5'] }}&euro;</td>
+              <td><img src="/static/img/e5.png" alt="E5"></td>
+            </tr>
+            <tr>
+              <td>{{ station['diesel'] }}&euro;</td>
+              <td><img src="/static/img/diesel.png" alt="Diesel"></td>
+            </tr>
+        </table>
+        </div>
+        <div class="box-element" style="margin-top: 20px;">
+          {{ price_plot[1]|safe }}
+        </div>
+      </div>
+      <div class="box">
+        <div class="box-element">
+          <h2>Öffnungszeiten</h2>
+
+          <p><strong>Hat derzeit {% if station['isOpen'] %}<span class="color-ok">geöffnet</span>{% else %}<span class="color-warning">geschlossen</span>{% endif %}.</strong></p>
+          {% for time in station['openingTimes']: %}
+          <p>{{ time['text'] }}<br>{{ time['start'][:-3] }} - {{ time['end'][:-3] }}</p>
+          {% endfor %}
+        </div>
+        <div class="box-element">
+          <h2>Sonstiges</h2>
+          <table>
+            <tr>
+              <th>Marke:</th><td>{{ station['brand'] }}</td>
+            </tr>
+          </table>
+        </div>
+        <div class="box-element">
+          <h2>Adresse</h2>
+          <p style="text-transform: capitalize;">{{ station['street']|lower }} {{ station['houseNumber']|lower }}, {{ station['postCode'] }} {{ station['place']|lower }}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section>
+    <div id="map" class="map"></div>
+  </section>
+  <script>
+    var iconFeature = new ol.Feature({
+      geometry: new ol.geom.Point(ol.proj.transform([{{ station['lng'] }}, {{ station['lat'] }}], 'EPSG:4326', 'EPSG:3857')),
+      name: '{{ station['name'] }}'
+    });
+
+    var iconStyle = new ol.style.Style({
+      image: new ol.style.Icon(/** @type {olx.style.IconOptions} */ ({
+        anchor: [0.5, 1],
+        anchorXUnits: 'fraction',
+        anchorYUnits: 'fraction',
+        src: '/static/img/station_tag.png'
+      }))
+    });
+
+    iconFeature.setStyle(iconStyle);
+
+    var vectorSource = new ol.source.Vector({
+      features: [iconFeature]
+    });
+
+    var vectorLayer = new ol.layer.Vector({
+      source: vectorSource
+    });
+
+
+    var map = new ol.Map({
+      target: 'map',
+      interactions: ol.interaction.defaults({mouseWheelZoom:false}),
+      layers: [
+        new ol.layer.Tile({
+          // source: new ol.source.MapQuest({layer: 'sat'})
+          source: new ol.source.MapQuest({layer: 'osm'})
+        }), vectorLayer
+      ],
+      view: new ol.View({
+        center: ol.proj.fromLonLat([{{ station['lng'] }}, {{ station['lat'] }}]),
+        zoom: 16
+      })
+    });
+  </script>
+{% endblock %}

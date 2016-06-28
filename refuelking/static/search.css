@@ -1,0 +1,119 @@
+@import url(https://fonts.googleapis.com/css?family=Dosis);
+
+#title, #station-list{
+  padding-top: 50px;
+  padding-bottom: 50px;
+  background-attachment: fixed;
+  background-size: cover;
+  background-image: url('/static/img/old-gas-pump.jpg');
+}
+
+#title h1{
+  font-size: 5.5em;
+  text-transform: uppercase;
+}
+
+#title p{
+  font-size: 2em;
+}
+
+#statistics{
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.text-emph {
+  font-size: 2.5em;
+}
+.color-rost{
+    color: rgb(254, 105, 87);
+}
+.color-light{
+    color: rgb(88, 114, 254);
+}
+
+.station{
+  width: 400px;
+  height: 230px;
+  margin: 25px 50px;
+  float: left;
+  /*margin-top: 10px;*/
+  background-color: rgba(255, 255, 255, 0.8);
+  /*border: solid 2px gray;*/
+  /*border-radius: 5px;*/
+  cursor: pointer;
+  padding: 0px 5px;
+  overflow: hidden;
+}
+
+.station:hover{
+  background-color: rgba(255, 255, 255, 0.6);;
+}
+
+.station ul li {
+  list-style-type: none;
+  font-family: 'Dosis', sans-serif;
+  font-size: 1.3em;
+}
+
+.station p {
+  text-transform: capitalize;
+  font-style: italic;
+  color: #383838;
+}
+
+table {
+  margin: auto;
+}
+
+.average-prices table, .station table{
+  font-family: 'Dosis', sans-serif;
+}
+
+.station table, .best-time table{
+  font-size: 1.3em;
+}
+
+.average-prices table{
+  font-size: 2em;
+}
+
+.average-prices img{
+  height: 30px;
+}
+
+.station img, .best-time img{
+  height: 23px;
+}
+
+.map {
+  height: 400px;
+  width: 100%;
+}
+
+.popover {
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.42857143;
+  text-align: left;
+  text-align: start;
+  text-shadow: none;
+  text-transform: none;
+  letter-spacing: normal;
+  word-break: normal;
+  word-spacing: normal;
+  word-wrap: normal;
+  white-space: normal;
+}
+
+@media (max-width: 1024px) {
+  .station{
+    width: 90%;
+    max-width: 400px;
+    margin: auto;
+    float: none;
+    margin-top: 15px;
+  }
+}

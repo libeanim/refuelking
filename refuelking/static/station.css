@@ -1,0 +1,27 @@
+@import url(https://fonts.googleapis.com/css?family=Dosis);
+
+#title{
+  font-size: 5em;
+  padding: 25px;
+  background-attachment: scroll;
+  background-size: cover;
+  background-image: url('/static/img/vintage-gas-pump-nozzles.jpg');
+}
+
+table{
+  margin: auto;
+}
+
+.price-table{
+  font-family: 'Dosis', sans-serif;
+  font-size: 1.5em;
+}
+
+.price-table img{
+  height: 23px;
+}
+
+.map {
+  height: 400px;
+  width: 100%;
+}

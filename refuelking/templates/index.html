@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}
+REFUELKING | Welche Tankstelle ist am günstigsten?
+{% endblock %}
+{% block head %}
+    {{ super() }}
+    <link rel="stylesheet" href="/static/index.css" />
+{% endblock %}
+{% block content %}
+<section id="title">
+  <div class="container color-white">
+    <div class="clear">
+      <img src="/static/img/gas_station_clipart_white.png">
+      <h1>Refuelking</h1>
+    </div>
+    <p>Finde die günstigste Tankstelle in deiner Nähe.</p>
+    <form action="search">
+      <input type="text" name="address" value="Wilhelmstraße 129-133, 10963 Berlin">
+       <select name="rad">
+         <option value="1">1 km</option>
+         <option value="3" selected>3 km</option>
+         <option value="5">5 km</option>
+         <option value="10">10 km</option>
+       </select>
+      <input type="submit" value="Suche">
+    </form>
+  </div>
+</section>
+{% endblock %}

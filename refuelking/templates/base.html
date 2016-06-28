@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    {% block head %}
+    <meta charset="utf-8">
+    <meta name="description" lang="de" content="Refuelking findet die güstigste Tankstelle in Ihrer Nähe.">
+    <meta name="keywords" lang="de" content="Tankstelle, Tankerkönig, Zapfsäulenkönig, Diesel, Benzin, E10, E5, Auto, tanken">
+    <link rel="stylesheet" href="/static/main.css" />
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="shortcut icon" href="/static/img/gas_station_clipart_white.png">
+    <link rel="icon" type="image/png" href="/static/img/gas_station_clipart_white.png" sizes="32x32">
+    {% endblock %}
+  </head>
+  <body>
+    {% block content %}{% endblock %}
+  </body>
+</html>
