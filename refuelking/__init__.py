@@ -5,6 +5,7 @@ import geocoder
 from flask import Flask, render_template, request, url_for, redirect, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from bokeh.embed import components
+from bokeh.resources import CDN
 
 from config import API_KEYS
 from refuelking.api import Tankerkoenig
@@ -124,6 +125,6 @@ def get_station(id):
         data['e5'].append(price.e5)
     # Generate a price plot and dismantle it to it's components (script, div)
     # element.
-    price_plot = components(get_price_plot(data))
+    price_plot = components(get_price_plot(data), CDN)
     return render_template('station.html', price_plot=price_plot,
                            station=station)

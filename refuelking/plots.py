@@ -23,9 +23,7 @@ def get_price_plot(data):
     # Define the basic figure...
     p = figure(title="Preisentwicklung",
                x_axis_label='Datum', y_axis_label='Preis in €',
-               toolbar_location=None, width=500, height=500,
-               title_text_font='Lato', title_text_font_size='1.5em',
-               title_text_font_style='bold')
+               toolbar_location=None, width=500, height=500)
     # ... and axis format.
     p.xaxis.formatter = DatetimeTickFormatter(formats=dict(
             hours=["%d %b"],
@@ -33,6 +31,10 @@ def get_price_plot(data):
             months=["%d %b"],
             years=["%d %b"],
         ))
+    p.title.text_font = 'Lato'
+    p.title.text_font_size = '1.5em'
+    p.title.text_font_style = 'bold'
+    p.title.align = 'center'
 
     # Add a line renderer with legend and line thickness
     p.line(data['dates'], data['diesel'], legend='DIESEL', line_width=2,
