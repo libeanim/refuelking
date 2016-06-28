@@ -66,7 +66,7 @@
     <div class="container clear">
       <!-- {{ map_plot_div|safe }} -->
       {% for station in stations %}
-        <a href="/station/{{ station['id'] }}">
+        <a href="{{ url_for('get_station', id=station['id']) }}">
           <div class="station">
             <h2 style="text-transform: capitalize;">{{ station['brand']|lower|truncate(25) }}</h2>
             <table>
