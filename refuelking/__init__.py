@@ -80,21 +80,21 @@ def get_data():
             lons.append(station['lng'])
         # Average all prices for each hour to get the average price per hour
         # for all fuel types.
-        pr_out = np.array([(np.average(vals[0]) if vals[0] else np.nan,
-                            np.average(vals[1] if vals[1] else np.nan),
-                            np.average(vals[2]) if vals[2] else np.nan
+        pr_out = np.array([(np.average(vals[0]) if vals[0] else 0,
+                            np.average(vals[1] if vals[1] else 0),
+                            np.average(vals[2]) if vals[2] else 0
                             ) for vals in pr_out.values()])
-        # Make sure that a price of 0 does not count.
-        pr_out[pr_out == 0] = np.nan
 
         # Identify best prices and store the information in the stations list.
         for station in stations:
             station['top_prices'] = (station['e10'] == min(e10),
                                      station['e5'] == min(e5),
                                      station['diesel'] == min(diesel))
-        if np.all(pr_out == np.nan):
+        if np.all(pr_out == 0):
             best_time = ('-', '-', '-')
         else:
+            # Make sure that a price of 0 does not count.
+            pr_out[pr_out == 0] = np.nan
             best_time = np.nanargmin(pr_out, axis=0)
 
         return render_template('search.html', stations=stations,
