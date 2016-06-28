@@ -1,3 +1,4 @@
+import os
 from datetime import datetime, timedelta
 import numpy as np
 import geocoder
@@ -11,8 +12,9 @@ from refuelking.plots import get_price_plot
 
 # Instantiating main app object
 app = Flask(__name__)
-# Instantiating configuration from class in config.py
-app.config.from_object('config.DevelopmentConfig')
+# Instantiating configuration from class in config.py loaded from a environment
+# variable.
+app.config.from_object(os.environ['APP_SETTINGS'])
 # Instantiating database
 db = SQLAlchemy(app)
 # Instantiating Tankerkoenig api wrapper

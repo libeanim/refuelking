@@ -6,6 +6,7 @@ The website also uses [OpenLayers3](http://openlayers.org/en/latest/doc/quicksta
 * flask
 * sqlalchemy
 * bokeh
+* geocoder
 
 
 # Install
