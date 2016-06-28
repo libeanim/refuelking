@@ -7,8 +7,7 @@
     <link rel="stylesheet" href="http://openlayers.org/en/v3.16.0/css/ol.css" type="text/css">
     <script src="http://openlayers.org/en/v3.16.0/build/ol.js"></script>
     <link href="http://cdn.pydata.org/bokeh/release/bokeh-0.12.0.min.css" rel="stylesheet" type="text/css">
-    <script src="http://cdn.pydata.org/bokeh/release/bokeh-0.12.0.min.js"></script> 
-    {{ price_plot[0]|safe }}
+    <script src="http://cdn.pydata.org/bokeh/release/bokeh-0.12.0.min.js"></script>
     <style>
       #OpenLayers_Control_Attribution_7{
         bottom:3px;
@@ -114,4 +113,5 @@
       })
     });
   </script>
+  {{ price_plot[0]|safe }}
 {% endblock %}
