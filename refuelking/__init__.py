@@ -38,7 +38,7 @@ def update_price(station):
     pr = Price.query.filter(Price.station_id == station['id'],
                             Price.date > datetime.now() -
                             timedelta(seconds=15 * 60)).order_by(
-                                Price.date).first()
+                                Price.date.desc()).first()
     # If there is no entry add the new one otherwise if an entry exists
     # only add the provided information when the prices have changed.
     if not pr or not (pr.diesel == station['diesel'] and
@@ -143,10 +143,10 @@ def get_station(id):
     station = tk.detail(id=id)['station']
     data = {'dates': [], 'diesel': [], 'e10': [], 'e5': []}
     time_diff = datetime.now() - timedelta(days=7)
-    # Generate price plot, but only if there are more than 1 results
+    # Generate price plot, but only if there are more than 2 results
     # in database.
     if Price.query.filter(Price.station_id == id,
-                          Price.date > time_diff).count() > 1:
+                          Price.date > time_diff).count() > 2:
         # Generate a list of fuel prices over the last 7 days.
         for price in Price.query.filter(Price.station_id == id,
                                         Price.date > time_diff).all():
