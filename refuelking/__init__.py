@@ -119,7 +119,7 @@ def get_data():
                                      station['e5'] == min(e5),
                                      station['diesel'] == min(diesel))
         if np.all(pr_out == 0):
-            best_time = ('-', '-', '-')
+            best_time = ('?', '?', '?')
         else:
             # Make sure that a price of 0 does not count.
             pr_out[pr_out == 0] = np.nan
@@ -143,15 +143,22 @@ def get_station(id):
     station = tk.detail(id=id)['station']
     data = {'dates': [], 'diesel': [], 'e10': [], 'e5': []}
     time_diff = datetime.now() - timedelta(days=7)
-    # Generate a list of fuel prices over the last 7 days.
-    for price in Price.query.filter(Price.station_id == id,
-                                    Price.date > time_diff).all():
-        data['dates'].append(price.date)
-        data['diesel'].append(price.diesel)
-        data['e10'].append(price.e10)
-        data['e5'].append(price.e5)
-    # Generate a price plot and dismantle it to it's components (script, div)
-    # element.
-    price_plot = components(get_price_plot(data), CDN)
+    # Generate price plot, but only if there are more than 1 results
+    # in database.
+    if Price.query.filter(Price.station_id == id,
+                          Price.date > time_diff).count() > 1:
+        # Generate a list of fuel prices over the last 7 days.
+        for price in Price.query.filter(Price.station_id == id,
+                                        Price.date > time_diff).all():
+            data['dates'].append(price.date)
+            data['diesel'].append(price.diesel)
+            data['e10'].append(price.e10)
+            data['e5'].append(price.e5)
+        # Generate a price plot and dismantle it to it's components
+        # (script, div) element.
+        price_plot = components(get_price_plot(data), CDN)
+    else:
+        price_plot = ('', '<p>Preisentwicklung kann nicht dargestellt werden, '
+                      'da nicht genügend Daten vorhanden sind.</p>')
     return render_template('station.html', price_plot=price_plot,
                            station=station)
