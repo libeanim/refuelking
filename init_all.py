@@ -3,7 +3,7 @@
 Quickstart Initializer
 =================================
 
-This tool generates a configuration file and initializes a local database.
+This tool generates a configuration file and initializes your database.
 """
 
 import os
@@ -39,13 +39,23 @@ class API_KEYS():
     TANKERKOENIG = '{}'
 
 """
-os.environ['APP_SETTINGS'] = 'config.DevelopmentConfig'
-os.environ['DATABASE_URL'] = 'sqlite:///sample.db'
+if 'APP_SETTINGS' not in os.environ.keys():
+    print('APP_SETTINGS not defined. Using "config.DevelopmentConfig".')
+    os.environ['APP_SETTINGS'] = 'config.DevelopmentConfig'
+if 'DATABASE_URL' not in os.environ.keys():
+    print('DATABASE_URL not defined. Using "sqlite:///sample.db".')
+    os.environ['DATABASE_URL'] = 'sqlite:///sample.db'
 
 print(__doc__)
 print('Hello!')
 print('This script will generate a config.py file which contains the app '
-      'settings. Keep this file secret.')
+      'settings.\nKeep this file in secret.\n\n')
+
+if os.path.isfile('config.py'):
+    c = input('Configuration file already exists.\nDo you want to continue '
+              'and overwrite it? (y/N)?')
+    if c.lower() != 'y':
+        raise SystemExit('User abort.')
 
 tk_key = input('Please enter you Tankerkoenig api key: ')
 secret_key = os.urandom(24)
