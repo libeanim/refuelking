@@ -44,10 +44,12 @@ def update_price(station):
     if not pr or not (pr.diesel == station['diesel'] and
                       pr.e10 == station['e10'] and
                       pr.e5 == station['e5']):
+        # import pdb; pdb.set_trace()
         db.session.add(Price(station_id=station['id'],
                              diesel=station['diesel'],
                              e10=station['e10'],
-                             e5=station['e5']))
+                             e5=station['e5']),
+                             date=datetime.now())
 
 
 # Define main page.
