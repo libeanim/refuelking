@@ -1,9 +1,11 @@
+# Refuelking
+
 This is a simple webapp to find the nearest and cheapest gas station based on the [Tankerkoenig API](https://creativecommons.tankerkoenig.de/) inspired by the IT-Talents' [monthly competition](https://www.it-talents.de/cms/aktionen/code-competition/code-competition-05-2016).
 All maps in this webapp are rendered through the [OpenLayers](http://openlayers.org/) library and the frontend of this app is in german.
 
 **Click [here](http://libeanim.shaula.uberspace.de/projects/refuelking/) for a working demo.**
 
-# Requirements
+## Requirements
 * python3
 * flask
 * flask-sqlalchemy
@@ -11,7 +13,7 @@ All maps in this webapp are rendered through the [OpenLayers](http://openlayers.
 * geocoder
 
 
-# Install
+## Installation
 1. Clone the repository:
    ```bash
    $ git clone https://github.com/libeanim/refuelking.git
@@ -28,7 +30,7 @@ All maps in this webapp are rendered through the [OpenLayers](http://openlayers.
    $ pip install -r requirements.txt
    ```
 
-# Run
+## Run Test Server
 This is a simple explanation to run this website on a local flask test server.
 
 1. After you finished the installation procedure, execute the `init_all.py` script in the activated virtual environment:
@@ -45,7 +47,7 @@ This is a simple explanation to run this website on a local flask test server.
 3. That's it! You should now be able to access the website on [http://127.0.0.1:5000/](http://127.0.0.1:5000/).
 
 
-# Deployment
+## Deployment
 There are many ways to deploy a Flask application. Choose your favorite or mandatory way according to your webspace provider.
 
 Then before you start the application set the following two environment variables:
