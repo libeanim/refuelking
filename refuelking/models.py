@@ -36,16 +36,17 @@ class Price(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     station_id = db.Column(db.String(36), nullable=False, index=True)
-    diesel = db.Column(db.Float(precision='3,3'), nullable=False)
-    e10 = db.Column(db.Float(precision='3,3'), nullable=False)
-    e5 = db.Column(db.Float(precision='3,3'), nullable=False)
+    diesel = db.Column(db.Integer, nullable=False)
+    e10 = db.Column(db.Integer, nullable=False)
+    e5 = db.Column(db.Integer, nullable=False)
     date = db.Column(db.DateTime)
 
     def __init__(self, station_id, diesel, e10, e5, date=datetime.now()):
         self.station_id = station_id
-        self.diesel = diesel
-        self.e10 = e10
-        self.e5 = e5
+        self.diesel = (int(diesel * 1000) if not isinstance(diesel, int)
+                       else diesel)
+        self.e10 = int(e10 * 1000) if not isinstance(e10, int) else e10
+        self.e5 = int(e5 * 1000) if not isinstance(e5, int) else e5
         self.date = date
 
     @staticmethod

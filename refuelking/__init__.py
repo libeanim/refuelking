@@ -41,9 +41,9 @@ def update_price(station):
                                 Price.date.desc()).first()
     # If there is no entry add the new one otherwise if an entry exists
     # only add the provided information when the prices have changed.
-    if not pr or not (pr.diesel == station['diesel'] and
-                      pr.e10 == station['e10'] and
-                      pr.e5 == station['e5']):
+    if not pr or not (pr.diesel == int(station['diesel'] * 1000) and
+                      pr.e10 == int(station['e10'] * 1000) and
+                      pr.e5 == int(station['e5'] * 1000)):
         # import pdb; pdb.set_trace()
         db.session.add(Price(station_id=station['id'],
                              diesel=station['diesel'],
@@ -98,9 +98,10 @@ def get_data():
             for pr in prs:
                 # Group prices to the hour where they occured to identify the
                 # hour where fuel was cheapest within the last week.
-                pr_out[pr.date.hour][0].append(pr.e10)
-                pr_out[pr.date.hour][1].append(pr.e5)
-                pr_out[pr.date.hour][2].append(pr.diesel)
+                # Divide it by 1000 to convert to correct float
+                pr_out[pr.date.hour][0].append(pr.e10 / 1000)
+                pr_out[pr.date.hour][1].append(pr.e5 / 1000)
+                pr_out[pr.date.hour][2].append(pr.diesel / 1000)
 
             # Create list for all fuel types (for later processing).
             e10.append(station['e10'])
@@ -153,9 +154,9 @@ def get_station(id):
         for price in Price.query.filter(Price.station_id == id,
                                         Price.date > time_diff).all():
             data['dates'].append(price.date)
-            data['diesel'].append(price.diesel)
-            data['e10'].append(price.e10)
-            data['e5'].append(price.e5)
+            data['diesel'].append(price.diesel / 1000)
+            data['e10'].append(price.e10 / 1000)
+            data['e5'].append(price.e5 / 1000)
         # Generate a price plot and dismantle it to it's components
         # (script, div) element.
         price_plot = components(get_price_plot(data), CDN)
