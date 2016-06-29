@@ -36,9 +36,9 @@ class Price(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     station_id = db.Column(db.String(36), nullable=False, index=True)
-    diesel = db.Column(db.Float, nullable=False)
-    e10 = db.Column(db.Float, nullable=False)
-    e5 = db.Column(db.Float, nullable=False)
+    diesel = db.Column(db.Float(precision='2,3'), nullable=False)
+    e10 = db.Column(db.Float(precision='2,3'), nullable=False)
+    e5 = db.Column(db.Float(precision='2,3'), nullable=False)
     date = db.Column(db.DateTime)
 
     def __init__(self, station_id, diesel, e10, e5, date=datetime.now()):
