@@ -46,21 +46,20 @@ This is a simple explanation to run this website on a local flask test server.
 
 
 # Deployment
-There are many ways to deploy a Flask application. Choose your favorite or mandatory way according to you webspace provider.
+There are many ways to deploy a Flask application. Choose your favorite or mandatory way according to your webspace provider.
 
 Then before you start the application set the following two environment variables:
 * Set the app configuration to production mode:
-  ```bash
-  $ export APP_CONFIG="config.ProductionConfig"
-  ```
+   ```bash
+   $ export APP_CONFIG="config.ProductionConfig"
+   ```
+
 * Set the url to your database:
-  ```bash
-  $ export DATABASE_URL="mysql://username:password@server/database"
-  ```
-  More information on the sqlalchemy database url format can be found [here](http://docs.sqlalchemy.org/en/latest/core/engines.html#database-urls).
-  *Hint: For mysql and python3 a recommended engine is oursql*
+   ```bash
+   $ export DATABASE_URL="mysql+oursql://username:password@server/database"
+   ```
+   More information on the sqlalchemy database url format can be found [here](http://docs.sqlalchemy.org/en/latest/core/engines.html#database-urls).
+   
+   *Hint: A working engine for mysql and python3 is `oursql`*
 
 **Before the first run** make sure the configuration and database has been created. You can do that by executing the `init_all.py` script with the correct value for the environment variable `DATABASE_URL`.
-
-# Future plans
-* Predict future price developement according to last prices changes, similar to a [server load prediction](http://cs229.stanford.edu/proj2009/ChaidaroonKimSeo.pdf).
