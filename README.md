@@ -57,7 +57,8 @@ Then before you start the application set the following two environment variable
   ```bash
   $ export DATABASE_URL="mysql://username:password@server/database"
   ```
-  More information on the sqlalchemy database url format can be found [here](http://docs.sqlalchemy.org/en/latest/core/engines.html#database-urls)
+  More information on the sqlalchemy database url format can be found [here](http://docs.sqlalchemy.org/en/latest/core/engines.html#database-urls).
+  *Hint: For mysql and python3 a recommended engine is oursql*
 
 **Before the first run** make sure the configuration and database has been created. You can do that by executing the `init_all.py` script with the correct value for the environment variable `DATABASE_URL`.
 
