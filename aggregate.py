@@ -1,6 +1,7 @@
 import requests
 import time
 
+SLEEP = 15
 RAD = 15
 CITIES = ['Bremen', 'Berlin', 'Heidelberg', 'Köln', 'Düsseldorf', 'Essen',
           'Karlsruhe', 'Stuttgart', 'Frankfurt', 'Potsdam', 'Dortmund',
@@ -12,5 +13,5 @@ while True:
         requests.get('http://libeanim.shaula.uberspace.de/projects/refuelking/'
                      'search?address={}&rad={}'.format(city, RAD))
         print(city, 'OK.')
-    print('Done.\nSleep for 60 mins.\n')
-    time.sleep(60**2)
+    print('Done.\nSleep for {} mins.\n'.format(SLEEP))
+    time.sleep(SLEEP * 60)
