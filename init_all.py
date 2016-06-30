@@ -67,7 +67,7 @@ print('Initializing database...')
 from refuelking import db
 db.drop_all()
 db.create_all()
-print('Done.')
+print('Done.\n')
 
-print('\n', 'To start the webserver run the "run_debug.py" file.')
-print('Goodbye')
+print('To start the webserver run the "run_debug.py" file.')
+print('Goodbye.')
