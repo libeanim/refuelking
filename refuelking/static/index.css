@@ -1,5 +1,4 @@
 #title {
-  /*height: 500px;*/
   background-attachment: scroll;
   background-size: cover;
   background-image: url('img/vintage-gas-station.jpg');
@@ -14,22 +13,23 @@
 
 #title div{
   padding-top: 10px;
-  /*margin-left: 55%;*/
   padding-bottom: 10px;
 }
 
 
 #title h1{
   font-size: 2.5em;
-  /*font-family: 'Open Sans Condensed', sans-serif;*/
   text-transform: uppercase;
-  /*font-weight: 300;*/
   font-style: italic;
   text-align: left;
 }
 #title p{
   font-size: 4em;
   font-weight: 300;
+}
+
+#license a:hover{
+  color: lightblue;
 }
 
 form {
@@ -74,7 +74,6 @@ input[type=submit]:hover {
     font-size: 0.8em;
   }
   #title div{
-    /*margin: 5%;*/
     text-align: center;
   }
 }
