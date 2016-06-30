@@ -2,7 +2,7 @@
   background-attachment: scroll;
   background-size: cover;
   background-image: url('img/vintage-gas-station.jpg');
-  height: 100vh;
+  min-height: 100vh;
 }
 
 #title img{

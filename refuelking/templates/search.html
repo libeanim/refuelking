@@ -116,9 +116,9 @@
 
       var iconStyle = new ol.style.Style({
         image: new ol.style.Icon(/** @type {olx.style.IconOptions} */ ({
-          anchor: [0.5, 46],
+          anchor: [0.5, 1],
           anchorXUnits: 'fraction',
-          anchorYUnits: 'pixels',
+          anchorYUnits: 'fraction',
           src: '{{ url_for('static', filename='img/station_tag.png') }}'
         }))
       });
