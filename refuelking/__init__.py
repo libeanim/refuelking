@@ -157,7 +157,7 @@ def get_station(id):
             data['diesel'].append(price.diesel / 1000)
             data['e10'].append(price.e10 / 1000)
             data['e5'].append(price.e5 / 1000)
-        import pdb; pdb.set_trace()
+
         # Generate a price plot and dismantle it to it's components
         # (script, div) element.
         price_plot = components(get_price_plot(data), CDN)
