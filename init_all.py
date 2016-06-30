@@ -14,9 +14,7 @@ import os
 
 class BaseConfig(object):
     DEBUG = False
-    SECRET_KEY = '{}'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
-    # SQLALCHEMY_DATABASE_URI = 'sqlite:///sample.db'
     SQLALCHEMY_DATABASE_URI = os.environ['DATABASE_URL']
 
 
@@ -58,11 +56,10 @@ if os.path.isfile('config.py'):
         raise SystemExit('User abort.')
 
 tk_key = input('Please enter you Tankerkoenig api key: ')
-secret_key = os.urandom(24)
 
 print('Saving configuration...')
 with open('config.py', 'w') as fl:
-    fl.write(CONFIG_FILE_STRING.format(secret_key, tk_key))
+    fl.write(CONFIG_FILE_STRING.format(tk_key))
     fl.flush()
 print('Done.')
 
