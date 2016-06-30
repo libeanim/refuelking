@@ -43,34 +43,10 @@ class Price(db.Model):
 
     def __init__(self, station_id, diesel, e10, e5, date=datetime.now()):
         self.station_id = station_id
+        # all prices are multiplied by 1000 to preseve 3 float digits and
+        # then stored as int for easier handling
         self.diesel = (int(diesel * 1000) if not isinstance(diesel, int)
                        else diesel)
         self.e10 = int(e10 * 1000) if not isinstance(e10, int) else e10
         self.e5 = int(e5 * 1000) if not isinstance(e5, int) else e5
         self.date = date
-
-    @staticmethod
-    def update_price(station):
-        """
-        Update station information in the database of the given station.
-
-        * Parameters:
-
-            :station:
-                ``dict``;
-                station object provided by the Tankerkoenig api.
-        """
-        # Find a price entry of the given station within the last 15 minutes.
-        pr = Price.query.filter(Price.station_id == station['id'],
-                                Price.date > datetime.now() -
-                                timedelta(seconds=15 * 60)).order_by(
-                                    Price.date).first()
-        # If there is no entry add the new one otherwise if an entry exists
-        # only add the provided information when the prices have changed.
-        if not pr or not (pr.diesel == station['diesel'] and
-                          pr.e10 == station['e10'] and
-                          pr.e5 == station['e5']):
-            db.session.add(Price(station_id=station['id'],
-                                 diesel=station['diesel'],
-                                 e10=station['e10'],
-                                 e5=station['e5']))

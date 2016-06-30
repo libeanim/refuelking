@@ -2,15 +2,8 @@
 {% block head %}
     {{ super() }}
     <link rel="stylesheet" href="{{ url_for('static', filename='search.css') }}" />
-    <!-- <script src="http://openlayers.org/en/v3.16.0/build/ol.js" type="text/javascript"></script> -->
     <link rel="stylesheet" href="http://openlayers.org/en/v3.16.0/css/ol.css" type="text/css">
     <script src="http://openlayers.org/en/v3.16.0/build/ol.js"></script>
-    <!-- <script src="https://code.jquery.com/jquery-2.2.3.min.js"></script> -->
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> -->
-    <!-- <link href="http://cdn.pydata.org/bokeh/release/bokeh-0.11.0.min.css" rel="stylesheet" type="text/css">
-    <script src="http://cdn.pydata.org/bokeh/release/bokeh-0.11.0.min.js"></script>
-    {{ map_plot_script|safe }} -->
 {% endblock %}
 {% block title %}Tankstellen in der Nähe{% endblock %}
 {% block content %}
@@ -64,7 +57,6 @@
   </section>
   <section id="station-list">
     <div class="container clear">
-      <!-- {{ map_plot_div|safe }} -->
       {% for station in stations %}
         <a href="{{ url_for('get_station', id=station['id']) }}">
           <div class="station">
@@ -83,11 +75,6 @@
                 <td><img src="{{ url_for('static', filename='img/diesel.png') }}" alt="Diesel">{% if station['top_prices'][2] %} <img src="{{ url_for('static', filename='img/top.png') }}" alt="Günstigster Preis">{% endif %}</td>
               </tr>
             </table>
-            <!-- <ul>
-            {% for price in station['prices'] %}
-              <li><img style="height: 20px" src="/static/img/{{ price[0] }}"> {{ price [1] }}&euro;</li>
-            {% endfor %}
-            </ul> -->
             <p>Entfernung: {{ station['dist'] }}km<br>{{ station['street']|lower }} {{ station['houseNumber']|lower }}, {{ station['postCode'] }} {{ station['place']|lower }}</p>
           </div>
         </a>
@@ -95,12 +82,14 @@
     </div>
   </section>
   <script>
+    // Receiving station information from backend as json data.
     stations = {{ stations|tojson|safe }}
+    // Using transformed coordinate information to set position of an icon feature.
     var iconFeature = new ol.Feature({
-      geometry: new ol.geom.Point(ol.proj.transform([{{pos[1]}}, {{pos[0]}}], 'EPSG:4326', 'EPSG:3857')),
+      geometry: new ol.geom.Point(ol.proj.transform([{{ pos[1] }}, {{ pos[0] }}], 'EPSG:4326', 'EPSG:3857')),
       name: 'Ihre Position'
     });
-
+    // Generate the image which should represent the users location and set its anchor positions.
     var iconStyle = new ol.style.Style({
       image: new ol.style.Icon(/** @type {olx.style.IconOptions} */ ({
         anchor: [0.5, 1],
@@ -109,10 +98,11 @@
         src: '{{ url_for('static', filename='img/me_tag.png') }}'
       }))
     });
-
+    // Set icon style and add the icon feature to the icons list.
     iconFeature.setStyle(iconStyle);
     var icons = [iconFeature]
 
+    // Loop to add all gas station positions to the map, using the station information from above.
     for (var i = 0; i < stations.length; i++) {
       station = stations[i]
       var iconFeature = new ol.Feature({
@@ -137,21 +127,22 @@
       icons.push(iconFeature)
     }
 
+    // The icons list now contains all icon features, so add those to a vector source.
     var vectorSource = new ol.source.Vector({
       features: icons
     });
-
+    // Create a vector layer which gets the vector source created above as source.
     var vectorLayer = new ol.layer.Vector({
       source: vectorSource
     });
 
-
+    // Now create the map object which receives the vector layer and a Tile layer from mapquest.
+    // Also set target div and the view to the users position.
     var map = new ol.Map({
       target: 'map',
       interactions: ol.interaction.defaults({mouseWheelZoom:false}),
       layers: [
         new ol.layer.Tile({
-          // source: new ol.source.MapQuest({layer: 'sat'})
           source: new ol.source.MapQuest({layer: 'osm'})
         }), vectorLayer
       ],
@@ -160,44 +151,5 @@
         zoom: 14
       })
     });
-
-    // var element = document.getElementById('popup');
-    //
-    // var popup = new ol.Overlay({
-    //   element: element,
-    //   positioning: 'bottom-center',
-    //   stopEvent: false
-    // });
-    // map.addOverlay(popup);
-    //
-    // // display popup on click
-    // map.on('click', function(evt) {
-    //   var feature = map.forEachFeatureAtPixel(evt.pixel,
-    //       function(feature) {
-    //         return feature;
-    //       });
-    //   if (feature) {
-    //     popup.setPosition(evt.coordinate);
-    //     $(element).popover({
-    //       'placement': 'top',
-    //       'html': true,
-    //       'content': feature.get('name')
-    //     });
-    //     $(element).popover('show');
-    //   } else {
-    //     $(element).popover('destroy');
-    //   }
-    // });
-    //
-    // // change mouse cursor when over marker
-    // map.on('pointermove', function(e) {
-    //   if (e.dragging) {
-    //     $(element).popover('destroy');
-    //     return;
-    //   }
-    //   var pixel = map.getEventPixel(e.originalEvent);
-    //   var hit = map.hasFeatureAtPixel(pixel);
-    //   map.getTarget().style.cursor = hit ? 'pointer' : '';
-    // });
   </script>
 {% endblock %}

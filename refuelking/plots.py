@@ -36,7 +36,7 @@ def get_price_plot(data):
     p.title.text_font_style = 'bold'
     p.title.align = 'center'
 
-    # Add a line renderer with legend and line thickness
+    # Add three line renderers with legend
     p.line(data['dates'], data['diesel'], legend='DIESEL', line_width=2,
            line_color='red')
     p.line(data['dates'], data['e10'], legend='E10', line_width=2,

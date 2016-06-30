@@ -15,7 +15,7 @@ class Tankerkoenig():
 
     def __check(self, r):
         """
-        Internal method to check wether request was successful.
+        Internal method to check whether a request was successful.
 
         * Parameters:
 
@@ -61,7 +61,7 @@ class Tankerkoenig():
                 can be set to return a specific fuel type ``('diesel', 'e10',
                 'e5')``.
                 *Hint:* the sorting by price is only possible if the
-                chosen fuel type is ``('diesel', 'e10', 'e5')`` and not
+                chosen fuel type is ``diesel``, ``e10`` or ``e5`` and not
                 ``all``.
 
 

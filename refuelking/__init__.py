@@ -44,7 +44,6 @@ def update_price(station):
     if not pr or not (pr.diesel == int(station['diesel'] * 1000) and
                       pr.e10 == int(station['e10'] * 1000) and
                       pr.e5 == int(station['e5'] * 1000)):
-        # import pdb; pdb.set_trace()
         db.session.add(Price(station_id=station['id'],
                              diesel=station['diesel'],
                              e10=station['e10'],
