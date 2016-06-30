@@ -22,18 +22,18 @@ All maps in this webapp are rendered through the [OpenLayers](http://openlayers.
 ## Installation
 1. Clone the repository:
    ```bash
-   $ git clone https://github.com/libeanim/refuelking.git
+   git clone https://github.com/libeanim/refuelking.git
    ```
 
 2. Create a virtual environment and activate it:
    ```bash
-   $ virtualenv -p python3 my_environment
-   $ source my_environment/bin/activate
+   virtualenv -p python3 my_environment
+   source my_environment/bin/activate
    ```
 
 3. Use pip to install required packages in the virtual environment:
    ```bash
-   $ pip install -r requirements.txt
+   pip install -r requirements.txt
    ```
 
 ## Run Test Server
@@ -59,12 +59,12 @@ There are many ways to deploy a Flask application. Choose your favorite or manda
 Then before you start the application set the following two environment variables:
 * Set the app configuration to production mode:
    ```bash
-   $ export APP_CONFIG="config.ProductionConfig"
+   export APP_CONFIG="config.ProductionConfig"
    ```
 
 * Set the url to your database:
    ```bash
-   $ export DATABASE_URL="mysql+oursql://username:password@server/database"
+   export DATABASE_URL="mysql+oursql://username:password@server/database"
    ```
    More information on the sqlalchemy database url format can be found [here](http://docs.sqlalchemy.org/en/latest/core/engines.html#database-urls).
 
