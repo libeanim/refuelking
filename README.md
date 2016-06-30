@@ -6,7 +6,13 @@ All maps in this webapp are rendered through the [OpenLayers](http://openlayers.
 **Click [here](http://libeanim.shaula.uberspace.de/projects/refuelking/) for a working demo.**
 
 ## Requirements
+
 * python3
+* virtualenv
+* pip
+
+### Python dependencies
+*These packages can be installed via pip, see installation instructions below.*
 * flask
 * flask-sqlalchemy
 * bokeh
@@ -39,7 +45,7 @@ This is a simple explanation to run this website on a local flask test server.
    ```
    This will generate the configuration file and requires your Tankerkoenig [api key](https://creativecommons.tankerkoenig.de/#register). It also initialises a `sqlite` database in the module directory called `sample.db`
 
-2. Start now the `run_debug.py` script to start the server:
+2. Execute now the `run_debug.py` script to start the server:
    ```bash
    python3 run_debug.py
    ```
@@ -61,7 +67,7 @@ Then before you start the application set the following two environment variable
    $ export DATABASE_URL="mysql+oursql://username:password@server/database"
    ```
    More information on the sqlalchemy database url format can be found [here](http://docs.sqlalchemy.org/en/latest/core/engines.html#database-urls).
-   
+
    *Hint: A working engine for mysql and python3 is `oursql`*
 
 **Before the first run** make sure the configuration and database has been created. You can do that by executing the `init_all.py` script with the correct value for the environment variable `DATABASE_URL`.
