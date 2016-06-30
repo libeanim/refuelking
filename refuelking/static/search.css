@@ -113,4 +113,8 @@ table {
     float: none;
     margin-top: 15px;
   }
+
+  #title{
+    font-size: 0.55em;
+  }
 }

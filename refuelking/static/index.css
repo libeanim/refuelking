@@ -36,23 +36,21 @@ form {
   margin-top: 15vh;
 }
 
-input[type=text]{
-  width: 50%;
-}
-
 select {
   padding: 7px 20px;
   margin: 8px 0;
 }
 
 input[type=text] {
-    font-family: 'Lato', sans-serif;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
+  width: 50%;
+  min-width: 300px;
+  font-family: 'Lato', sans-serif;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
 }
 
 input[type=submit] {
