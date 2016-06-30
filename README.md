@@ -1,6 +1,6 @@
 # Refuelking
 
-This is a simple webapp to find the nearest and cheapest gas station based on the [Tankerkoenig API](https://creativecommons.tankerkoenig.de/) for the IT-Talents' [monthly competition](https://www.it-talents.de/cms/aktionen/code-competition/code-competition-05-2016).
+This is a simple webapp to find the nearest and cheapest gas station based on the [Tankerkoenig API](https://creativecommons.tankerkoenig.de/) and the [CC by 4.0](https://creativecommons.org/licenses/by/4.0/legalcode) license for the IT-Talents' [monthly competition](https://www.it-talents.de/cms/aktionen/code-competition/code-competition-05-2016).
 All maps in this webapp are rendered through the [OpenLayers](http://openlayers.org/) library and the frontend of this app is in german.
 
 **Click [here](http://libeanim.shaula.uberspace.de/projects/refuelking/) for a working demo.**
@@ -33,6 +33,7 @@ All maps in this webapp are rendered through the [OpenLayers](http://openlayers.
 
 3. Use pip to install required packages in the virtual environment:
    ```bash
+   cd refuelking
    pip install -r requirements.txt
    ```
 
