@@ -34,10 +34,10 @@ def update_price(station):
             ``dict``;
             station object provided by the Tankerkoenig api.
     """
-    # Find a price entry of the given station within the last 15 minutes.
+    # Find a price entry of the given station within the last 60 minutes.
     pr = Price.query.filter(Price.station_id == station['id'],
                             Price.date > datetime.now() -
-                            timedelta(seconds=15 * 60)).order_by(
+                            timedelta(seconds=60**2)).order_by(
                                 Price.date.desc()).first()
     # If there is no entry add the new one otherwise if an entry exists
     # only add the provided information when the prices have changed.
@@ -157,6 +157,7 @@ def get_station(id):
             data['diesel'].append(price.diesel / 1000)
             data['e10'].append(price.e10 / 1000)
             data['e5'].append(price.e5 / 1000)
+        import pdb; pdb.set_trace()
         # Generate a price plot and dismantle it to it's components
         # (script, div) element.
         price_plot = components(get_price_plot(data), CDN)
