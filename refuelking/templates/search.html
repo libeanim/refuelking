@@ -17,7 +17,7 @@
   <section id="title">
     <div class="container color-white">
       <h1>Ergebnisse</h1>
-      <p>Es befinden sich <span class="text-emph color-rost">{{ stations|length }}</span> Tankstellen im Umkreis von {{ rad }} Kilometer{% if dist != "1" %}n{% endif %}.</p>
+      <p>Es befinde{% if stations|length != 1 %}n{% else %}t{% endif %} sich <span class="text-emph color-rost">{{ stations|length }}</span> Tankstelle{% if stations|length != 1 %}n{% endif %} im Umkreis von {{ rad }} Kilometer{% if rad != "1" %}n{% endif %}.</p>
     </div>
   </section>
   <section id="statistics">
