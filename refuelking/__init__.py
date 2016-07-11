@@ -1,4 +1,4 @@
-import os
+ .import os
 from datetime import datetime, timedelta
 import numpy as np
 import geocoder
@@ -65,7 +65,7 @@ def get_data():
         # Get geo location via google maps api.
         geo = geocoder.google(
             '{}, Germany'.format(request.args.get('address')),
-            region='DE', language='de')
+            region='DE', language='de', key=API_KEYS.GOOGLE_KEY)
 
         # Call Tankerkoenig api to get gas stations close to location.
         res = tk.list(lat=geo.lat, lng=geo.lng, rad=request.args.get('rad', 3))
@@ -151,7 +151,8 @@ def get_station(id):
                           Price.date > time_diff).count() > 2:
         # Generate a list of fuel prices over the last 7 days.
         for price in Price.query.filter(Price.station_id == id,
-                                        Price.date > time_diff).all():
+                                        Price.date > time_diff).order_by(
+                                            Price.date).all():
             data['dates'].append(price.date)
             data['diesel'].append(price.diesel / 1000)
             data['e10'].append(price.e10 / 1000)
