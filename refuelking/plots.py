@@ -38,9 +38,9 @@ def get_price_plot(data):
 
     # Add three line renderers with legend
     p.line(data['dates'], data['diesel'], legend='DIESEL', line_width=2,
-           line_color='red')
+           line_color='black')
     p.line(data['dates'], data['e10'], legend='E10', line_width=2,
            line_color='green')
     p.line(data['dates'], data['e5'], legend='E5', line_width=2,
-           line_color='orange')
+           line_color='red')
     return p
