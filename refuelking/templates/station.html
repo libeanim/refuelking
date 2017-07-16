@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 {% block head %}
     {{ super() }}
-    <link rel="stylesheet" href="http://openlayers.org/en/v3.16.0/css/ol.css" type="text/css">
+    <link rel="stylesheet" href="http://openlayers.org/en/v3.16.0/css/ol.css" type="text/css"/>
     <script src="http://openlayers.org/en/v3.16.0/build/ol.js"></script>
-    <link href="http://cdn.pydata.org/bokeh/release/bokeh-0.12.0.min.css" rel="stylesheet" type="text/css">
+    <link href="http://cdn.pydata.org/bokeh/release/bokeh-0.12.0.min.css" rel="stylesheet" type="text/css"/>
     <script src="http://cdn.pydata.org/bokeh/release/bokeh-0.12.0.min.js"></script>
     <link rel="stylesheet" href="{{ url_for('static', filename='station.css') }}" />
     {{ price_plot[0]|safe }}
@@ -28,15 +28,15 @@
           <table class="price-table">
             <tr>
               <td>{{ station['e10'] }}&euro;</td>
-              <td><img src="{{ url_for('static', filename='img/e10.png') }}" alt="E10"></td>
+              <td><img src="{{ url_for('static', filename='img/e10.png') }}" alt="E10"/></td>
             </tr>
             <tr>
               <td>{{ station['e5'] }}&euro;</td>
-              <td><img src="{{ url_for('static', filename='img/e5.png') }}" alt="E5"></td>
+              <td><img src="{{ url_for('static', filename='img/e5.png') }}" alt="E5"/></td>
             </tr>
             <tr>
               <td>{{ station['diesel'] }}&euro;</td>
-              <td><img src="{{ url_for('static', filename='img/diesel.png') }}" alt="Diesel"></td>
+              <td><img src="{{ url_for('static', filename='img/diesel.png') }}" alt="Diesel"/></td>
             </tr>
         </table>
         </div>
@@ -50,7 +50,7 @@
 
           <p><strong>Hat derzeit {% if station['isOpen'] %}<span class="color-ok">geöffnet</span>{% else %}<span class="color-warning">geschlossen</span>{% endif %}.</strong></p>
           {% for time in station['openingTimes']: %}
-          <p>{{ time['text'] }}<br>{{ time['start'][:-3] }} - {{ time['end'][:-3] }}</p>
+          <p>{{ time['text'] }}<br/>{{ time['start'][:-3] }} - {{ time['end'][:-3] }}</p>
           {% endfor %}
         </div>
         <div class="box-element">

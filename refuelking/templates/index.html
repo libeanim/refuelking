@@ -10,23 +10,23 @@ REFUELKING | Welche Tankstelle ist am günstigsten?
 <section id="title">
   <div class="container color-white">
     <div class="clear">
-      <img src="{{ url_for('static', filename='img/gas_station_clipart_white.png') }}">
+      <img src="{{ url_for('static', filename='img/gas_station_clipart_white.png') }}"/>
       <h1>Refuelking</h1>
     </div>
     <p>Finde die günstigste Tankstelle in deiner Nähe.</p>
     <form action="search">
-      <input type="text" name="address" value="Wilhelmstraße 129-133, 10963 Berlin">
+      <input type="text" name="address" value="Wilhelmstraße 129-133, 10963 Berlin"/>
        <select name="rad">
          <option value="1">1 km</option>
          <option value="3" selected>3 km</option>
          <option value="5">5 km</option>
          <option value="10">10 km</option>
        </select>
-      <input type="submit" value="Suche">
+      <input type="submit" value="Suche"/>
     </form>
     <div id="license">
       Verwendet wird die <strong><a href="http://www.tankerkoenig.de">Tankerkönig API</a></strong> unter der <strong><a href=" https://creativecommons.org/licenses/by/4.0/deed.de">CC BY 4.0</a></strong> Lizenz.
-      <!-- <br><em>Teile der API-Antworten werden in einer eigenen Datenbank zu Auswertungszwecken zwischengespeichert.</em> -->
+      <!-- <br/><em>Teile der API-Antworten werden in einer eigenen Datenbank zu Auswertungszwecken zwischengespeichert.</em> -->
     </div>
   </div>
 </section>

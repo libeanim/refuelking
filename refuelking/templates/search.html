@@ -2,7 +2,7 @@
 {% block head %}
     {{ super() }}
     <link rel="stylesheet" href="{{ url_for('static', filename='search.css') }}" />
-    <link rel="stylesheet" href="http://openlayers.org/en/v3.16.0/css/ol.css" type="text/css">
+    <link rel="stylesheet" href="http://openlayers.org/en/v3.16.0/css/ol.css" type="text/css"/>
     <script src="http://openlayers.org/en/v3.16.0/build/ol.js"></script>
 {% endblock %}
 {% block title %}Tankstellen in der Nähe{% endblock %}
@@ -20,15 +20,15 @@
         <table>
           <tr>
             <td>{{ "{:,.2f}".format(average_prices[0]) }}&euro;</td>
-            <td><img src="{{ url_for('static', filename='img/e10.png') }}" alt="E10"></td>
+            <td><img src="{{ url_for('static', filename='img/e10.png') }}" alt="E10"/></td>
           </tr>
           <tr>
             <td>{{ "{:,.2f}".format(average_prices[1]) }}&euro;</td>
-            <td><img src="{{ url_for('static', filename='img/e5.png') }}" alt="E5"></td>
+            <td><img src="{{ url_for('static', filename='img/e5.png') }}" alt="E5"/></td>
           </tr>
           <tr>
             <td>{{ "{:,.2f}".format(average_prices[2]) }}&euro;</td>
-            <td><img src="{{ url_for('static', filename='img/diesel.png') }}" alt="Diesel"></td>
+            <td><img src="{{ url_for('static', filename='img/diesel.png') }}" alt="Diesel"/></td>
           </tr>
         </table>
       </div>
@@ -38,15 +38,15 @@
         <table>
           <tr>
             <td>{{ best_time[0] }} Uhr</td>
-            <td><img src="{{ url_for('static', filename='img/e10.png') }}" alt="E10"></td>
+            <td><img src="{{ url_for('static', filename='img/e10.png') }}" alt="E10"/></td>
           </tr>
           <tr>
             <td>{{ best_time[1] }} Uhr</td>
-            <td><img src="{{ url_for('static', filename='img/e5.png') }}" alt="E5"></td>
+            <td><img src="{{ url_for('static', filename='img/e5.png') }}" alt="E5"/></td>
           </tr>
           <tr>
             <td>{{ best_time[2] }} Uhr</td>
-            <td><img src="{{ url_for('static', filename='img/diesel.png') }}" alt="Diesel"></td>
+            <td><img src="{{ url_for('static', filename='img/diesel.png') }}" alt="Diesel"/></td>
           </tr>
         </table>
       </div>
@@ -64,18 +64,18 @@
             <table>
               <tr>
                 <td>{{ station['e10'] }}&euro;</td>
-                <td><img src="{{ url_for('static', filename='img/e10.png') }}" alt="E10">{% if station['top_prices'][0] %} <img src="{{ url_for('static', filename='img/top.png') }}" alt="Günstigster Preis">{% endif %}</td>
+                <td><img src="{{ url_for('static', filename='img/e10.png') }}" alt="E10"/>{% if station['top_prices'][0] %} <img src="{{ url_for('static', filename='img/top.png') }}" alt="Günstigster Preis"/>{% endif %}</td>
               </tr>
               <tr>
                 <td>{{ station['e5'] }}&euro;</td>
-                <td><img src="{{ url_for('static', filename='img/e5.png') }}" alt="E5">{% if station['top_prices'][1] %} <img src="{{ url_for('static', filename='img/top.png') }}" alt="Günstigster Preis">{% endif %}</td>
+                <td><img src="{{ url_for('static', filename='img/e5.png') }}" alt="E5"/>{% if station['top_prices'][1] %} <img src="{{ url_for('static', filename='img/top.png') }}" alt="Günstigster Preis"/>{% endif %}</td>
               </tr>
               <tr>
                 <td>{{ station['diesel'] }}&euro;</td>
-                <td><img src="{{ url_for('static', filename='img/diesel.png') }}" alt="Diesel">{% if station['top_prices'][2] %} <img src="{{ url_for('static', filename='img/top.png') }}" alt="Günstigster Preis">{% endif %}</td>
+                <td><img src="{{ url_for('static', filename='img/diesel.png') }}" alt="Diesel"/>{% if station['top_prices'][2] %} <img src="{{ url_for('static', filename='img/top.png') }}" alt="Günstigster Preis"/>{% endif %}</td>
               </tr>
             </table>
-            <p>Entfernung: {{ station['dist'] }}km<br>{{ station['street']|lower }} {{ station['houseNumber']|lower }}, {{ station['postCode'] }} {{ station['place']|lower }}</p>
+            <p>Entfernung: {{ station['dist'] }}km<br/>{{ station['street']|lower }} {{ station['houseNumber']|lower }}, {{ station['postCode'] }} {{ station['place']|lower }}</p>
           </div>
         </a>
       {% endfor %}
